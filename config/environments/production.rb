@@ -25,6 +25,9 @@ Rails.application.configure do
   # Compress CSS using a preprocessor.
   # config.assets.css_compressor = :sass
 
+  # https://stackoverflow.com/questions/16296671/asset-precompilation-ok-but-404-when-trying-to-get-files
+  config.serve_static_assets = true
+
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
 
