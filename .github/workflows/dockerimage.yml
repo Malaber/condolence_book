@@ -5,10 +5,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: Publish to Registry
+      - name: Publish Production Container
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
           name: malaber/condolence_book
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           snapshot: true
+
+      - name: Publish Development Container
+        uses: elgohr/Publish-Docker-Github-Action@master
+        with:
+          name: malaber/condolence_book_dev
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          snapshot: true
+          dockerfile: Dockerfile.dev
