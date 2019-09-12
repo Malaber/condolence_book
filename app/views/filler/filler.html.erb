@@ -1,48 +1,36 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<% content_for :head do %>
     <style>
         body {
             background-image: url(<%= asset_path 'filler_background.jpg' %>);
+            background-attachment: fixed;
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
-
-            display: flex;
-            min-height: 100vh;
-            flex-direction: column;
-        }
-
-        main {
-            flex: 1 0 auto;
         }
     </style>
-    <title>In Pascals Gedenken</title>
-</head>
+<% end %>
 
-<body>
-    <main>
-        <div class="container">
+<body class="d-flex flex-column h-100">
+    <main role="main" class="flex-shrink-0">
+        <div class="container text-center">
             <div class="row">
-                <div class="col s12">
-                    <h1 class="center-align">In Pascals Gedenken</h1>
+                <div class="col">
+                    <h1>In Pascals Gedenken</h1>
                 </div>
             </div>
             <div class="row">
-                <div class="col s12">
-                    <p class="flow-text center-align">Diese Website ist dazu da um Pascal in Ehren zu halten.</p>
-                    <div class="divider"></div>
-                    <p class="flow-text center-align">
+                <div class="col">
+                    <p>Diese Website ist dazu da um Pascal in Ehren zu halten.</p>
+                    <hr>
+                    <p>
                         Hier entsteht ein Online Kondolenzbuch, in welchem jeder gerne seine Abschiedsworte und Gedanken an Pascal niederschreiben kann.
                     </p>
-                    <div class="divider"></div>
-                    <p class="flow-text center-align">
+                    <hr>
+                    <p>
                         Außerdem besteht die Möglichkeit alle Erinnerungen an Pascal in Form von Dokumenten (vor allem Bilder) hochzuladen, um auch seine Familie an unseren schönen Erinnnerungen mit ihn teilhaben zu lassen.
-                        <div class="col s12 center-align">
-                            <a href="http://upload.pascal-brand.de" class="btn btn-info" role="button">Dateien hochladen</a>
-                        </div>
+                    </p>
+                    <p>
+                        <a href="http://upload.pascal-brand.de" class="btn btn-info" role="button">Dateien hochladen</a>
                     </p>
                 </div>
             </div>
@@ -52,4 +40,3 @@
     <%= render partial: "partials/footer" %>
 
 </body>
-</html>
