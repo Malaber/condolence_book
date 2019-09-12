@@ -1,4 +1,5 @@
 class PrivacyController < ApplicationController
-  def privacy
+  def get
+    render 'privacy'
   end
 end

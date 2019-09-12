@@ -1,4 +1,5 @@
 class ImpressumController < ApplicationController
-  def impressum
+  def get
+    render 'impressum'
   end
 end
