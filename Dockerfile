@@ -1,9 +1,9 @@
 FROM ruby:2.6.2-alpine
-RUN apk add build-base tzdata sqlite sqlite-dev postgresql-dev && gem install tzinfo-data
+RUN apk --no-cache add build-base tzdata sqlite sqlite-dev postgresql-dev yarn && gem install tzinfo-data
 WORKDIR /app
 COPY Gemfile /app/Gemfile
 COPY Gemfile.lock /app/Gemfile.lock
-RUN bundle install --deployment --without development test
+RUN bundle install --deployment --without development test && yarn install --check-files
 COPY . /app
 RUN bin/rake assets:precompile
 ENV RAILS_ENV production
