@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'editor', to: 'editor#get'
   get 'privacy', to: 'privacy#get'
   get 'impressum', to: 'impressum#get'
   get 'index', to: 'filler#get'
