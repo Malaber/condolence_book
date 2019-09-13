@@ -1,5 +1,5 @@
 FROM ruby:2.6.2-alpine as build
-RUN apk --no-cache add build-base tzdata sqlite sqlite-dev postgresql-dev yarn && gem install tzinfo-data
+RUN apk --no-cache add build-base tzdata sqlite sqlite-dev postgresql-dev yarn nodejs-current && gem install tzinfo-data
 WORKDIR /app
 COPY Gemfile /app/Gemfile
 COPY Gemfile.lock /app/Gemfile.lock
