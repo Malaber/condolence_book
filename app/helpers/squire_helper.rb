@@ -1,0 +1,2 @@
+module SquireHelper
+end
