@@ -1,4 +1,5 @@
 class FillerController < ApplicationController
-  def index
+  def get
+    render 'filler'
   end
 end
