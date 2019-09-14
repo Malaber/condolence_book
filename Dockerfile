@@ -1,4 +1,5 @@
 FROM ruby:2.6.2-alpine as build
+ARG SECRET_KEY_BASE
 RUN apk --no-cache add build-base tzdata sqlite sqlite-dev postgresql-dev yarn && gem install tzinfo-data
 WORKDIR /app
 COPY Gemfile /app/Gemfile
@@ -7,6 +8,7 @@ RUN bundle install
 COPY . /app
 RUN yarn install --check-files
 RUN yarn add bootstrap jquery popper.js
+ENV RAILS_ENV production
 RUN bin/rake assets:precompile
 
 FROM ruby:2.6.2-alpine
