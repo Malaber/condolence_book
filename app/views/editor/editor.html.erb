@@ -6,10 +6,10 @@
 <h1>Neuen Eintrag erstellen</h1>
 <p>Bitte gib unten im Eingabefeld deinen Text ein, den du im Buch veröffentlichen möchtest.</p>
 
-<% form_with do |form| %>
-<% form.cktext_area :notes, class: 'someclass', ckeditor: { language: 'uk'} %>
-<% form.cktext_area :content, value: 'Default value', id: 'sometext' %>
-<% cktext_area :page, :info, cols: 40, ckeditor: { uiColor: '#AADC6E', toolbar: 'mini' } %>
+<%= form_with do |form| %>
+  <%= form.cktext_area :notes, class: 'someclass', ckeditor: { language: 'uk'} %>
+  <%= form.cktext_area :content, value: 'Default value', id: 'sometext' %>
+  <%= cktext_area :page, :info, cols: 40, ckeditor: { uiColor: '#AADC6E', toolbar: 'mini' } %>
 <% end %>
 
 <%= render partial: "partials/footer" %>
