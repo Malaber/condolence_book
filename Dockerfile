@@ -6,7 +6,6 @@ COPY Gemfile.lock /app/Gemfile.lock
 RUN bundle install
 COPY . /app
 RUN yarn install --check-files
-RUN yarn add bootstrap jquery popper.js
 RUN bin/rake assets:precompile
 
 FROM ruby:2.6.2-alpine
