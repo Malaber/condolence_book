@@ -1,3 +1,11 @@
+<% content_for :head do %>
+  <% javascript_include_tag Ckeditor.cdn_url %>
+<% end %>
+
+
+<h1>Neuen Eintrag erstellen</h1>
+<p>Bitte gib unten im Eingabefeld deinen Text ein, den du im Buch veröffentlichen möchtest.</p>
+
 <%= form_with scope: :article, url: articles_path, local: true do |form| %>
   <p>
     <%= form.label :title %><br>
@@ -6,10 +14,19 @@
 
   <p>
     <%= form.label :text %><br>
-    <%= form.rich_text_area :text %>
+    <%= form.cktext_area :text, id: 'text' %>
+  </p>
+
+  <p>
+    <%= form.radio_button :tag, 'freund', :checked => true %>
+    <%= label :tag_freund, 'Freund' %>
+    <%= form.radio_button :tag, 'pfadfinder' %>
+    <%= label :tag_pfadfinder, 'Pfadfinder' %>
   </p>
 
   <p>
     <%= form.submit %>
   </p>
 <% end %>
+
+<%= render partial: "partials/footer" %>

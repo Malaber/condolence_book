@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
-  get 'editor', to: 'editor#get'
   resources :articles
   get 'privacy', to: 'privacy#get'
   get 'impressum', to: 'impressum#get'
