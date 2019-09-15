@@ -7,9 +7,26 @@
 <p>Bitte gib unten im Eingabefeld deinen Text ein, den du im Buch veröffentlichen möchtest.</p>
 
 <%= form_with do |form| %>
-  <%= form.cktext_area :notes, class: 'someclass', ckeditor: { language: 'uk'} %>
-  <%= form.cktext_area :content, value: 'Default value', id: 'sometext' %>
-  <%= cktext_area :page, :info, cols: 40, ckeditor: { uiColor: '#AADC6E', toolbar: 'mini' } %>
+  <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </p>
+
+  <p>
+    <%= form.label :text %><br>
+    <%= form.cktext_area :text, id: 'text' %>
+  </p>
+
+  <p>
+    <%= form.radio_button :tag, 'freund', :checked => true %>
+    <%= label :tag_freund, 'Freund' %>
+    <%= form.radio_button :tag, 'pfadfinder' %>
+    <%= label :tag_pfadfinder, 'Pfadfinder' %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
 <% end %>
 
 <%= render partial: "partials/footer" %>
