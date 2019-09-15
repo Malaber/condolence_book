@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
 
   def new
+    render 'articles/new'
   end
 
   def create
@@ -11,6 +12,7 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
+    render 'articles/show'
   end
 
   private
