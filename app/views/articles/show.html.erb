@@ -1,10 +1,8 @@
 <p>Article Title:<strong><%= @article.title %></strong></p>
 <p>Article Tag:<strong><%= @article.tag %></strong></p>
-<p>Article Text:<strong><%= @article.text %></strong></p>
+<p>Article Text:<%=raw @article.text %></p>
 <p>Article Mail:<strong><%= @article.email %></strong></p>
 <p>Article Published:<strong><%= @article.published? %></strong></p>
 <p>Article Confirmed:<strong><%= @article.confirmed? %></strong></p>
-
-<%= link_to ‘Create new’,new_article_path %>
 
 <%= render partial: "partials/footer" %>

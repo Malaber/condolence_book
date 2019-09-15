@@ -3,25 +3,49 @@
 <% end %>
 
 
-<h1>Neuen Eintrag erstellen</h1>
+<h3>Neuen Eintrag erstellen</h3>
 <p>Bitte gib unten im Eingabefeld deinen Text ein, den du im Buch veröffentlichen möchtest.</p>
 
 <%= form_with scope: :article, url: articles_path, local: true do |form| %>
   <p>
-    <%= form.label :title %><br>
+    <%= form.label :title, 'Titel' %><br>
     <%= form.text_field :title %>
   </p>
 
   <p>
     <%= form.label :text %><br>
-    <%= form.cktext_area :text, id: 'text' %>
+    <%= form.cktext_area :text %>
   </p>
 
   <p>
+    <%= form.label :email, 'E-Mail' %><br>
+    <%= form.text_field :email %>
+    Bitte gib deine E-Mail Adresse ein, diese muss bestätigt werden, bevor dein Post veröffentlicht wird.
+  </p>
+
+  <p>
+    Woher kennst du Pascal? Wähle was am besten passt. <br>
+    <%= form.radio_button :tag, 'verwandt' %>
+    <%= form.label :tag, 'Verwandschaft', :value => 'verwandt' %>
+
     <%= form.radio_button :tag, 'freund', :checked => true %>
-    <%= label :tag_freund, 'Freund' %>
+    <%= form.label :tag, 'Freund', :value => 'freund'%>
+
     <%= form.radio_button :tag, 'pfadfinder' %>
-    <%= label :tag_pfadfinder, 'Pfadfinder' %>
+    <%= form.label :tag, 'Pfadfinder', :value => 'pfadfinder' %>
+
+    <%= form.radio_button :tag, 'hockey' %>
+    <%= form.label :tag, 'Hockey', :value => 'hockey' %>
+
+    <%= form.radio_button :tag, 'studium' %>
+    <%= form.label :tag, 'Studium', :value => 'studium' %>
+
+    <%= form.radio_button :tag, 'firma' %>
+    <%= form.label :tag, 'Firma', :value => 'firma' %>
+
+    <%= form.radio_button :tag, 'andere' %>
+    <%= form.label :tag, 'Andere', :value => 'andere' %>
+
   </p>
 
   <p>
