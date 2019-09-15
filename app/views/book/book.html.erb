@@ -1,2 +1,69 @@
-<h1>Book#book</h1>
-<p>Find me in app/views/book/book.html.erb</p>
+<% content_for :head do %>
+    <style>
+        body {
+            background-image: url(<%= asset_path 'filler_background.jpg' %>);
+            background-attachment: fixed;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+
+            margin-bottom: 50px;
+        }
+
+        #flipbook .page {
+            background-color:white;
+            font-size: 1rem;
+            border-radius: 10px;
+        }
+
+        #flipbook .cover {
+            background-color: rgb(161, 161, 161);
+            font-size: 1.2em;
+            outline: 1 #DDD;
+            border-radius: 10px;
+        }
+
+        #flipbook .page-number {
+            margin-bottom: 10px;
+            margin: auto;
+            width: 10%;
+        }
+    </style>
+<% end %>
+
+<body>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div id="flipbook">
+                        <div class="cover text-center">Cover-Vorderseite</div>
+                        <div class="cover"></div>
+                        <div class="page">
+                            <p>Seite 1 <br>Aha</p>
+                            <div class="page-number">1</div>
+                        </div>
+                        <div class="page">Seite 2</div>
+                        <div class="page">Seite 3</div>
+                        <div class="page">Seite 4</div>
+                        <div class="cover"></div>
+                        <div class="cover">Rückseite</div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <%= render partial: "partials/footer" %>
+
+    <script>
+        $("#flipbook").turn({
+            width: 800,
+            height: 600,
+            autoCenter: true
+        });
+    </script>
+
+</body>
