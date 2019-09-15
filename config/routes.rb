@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'book', to: 'book#get'
   get 'privacy', to: 'privacy#get'
   get 'impressum', to: 'impressum#get'
   get 'index', to: 'filler#get'
