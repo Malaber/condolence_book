@@ -70,7 +70,13 @@ Turnjs library is a great option to create an ebook with embedded audio and vide
 Setup Dependencies</p>
 </div>
 <div class="btn-group navigation" role="group">
-    <a class="btn btn-primary" href="#" role="button">previous</a>
-    <a class="btn btn-primary" href="#" role="button">next</a>
+  <% @previous_published_article = @article.previous_published
+     unless @previous_published_article.nil? %>
+    <a class="btn btn-primary" href="<%= article_path(@previous_published_article.id) %>" role="button">previous</a>
+  <% end %>>
+  <% @next_published_article = @article.next_published
+     unless @next_published_article.nil? %>
+    <a class="btn btn-primary" href="<%= article_path(@next_published_article.id) %>" role="button">next</a>
+  <% end %>>
 </div>
 <%= render partial: "partials/footer" %>
