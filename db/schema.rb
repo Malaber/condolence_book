@@ -38,8 +38,8 @@ ActiveRecord::Schema.define(version: 2019_09_15_185619) do
     t.string "text"
     t.string "email"
     t.string "tag"
-    t.boolean "confirmed?"
-    t.boolean "published?"
+    t.boolean "confirmed"
+    t.boolean "published"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
