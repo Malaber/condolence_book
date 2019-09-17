@@ -3,6 +3,10 @@ class Article < ApplicationRecord
   before_create :generate_confirmation_token
   before_create :generate_publish_token
 
+  def self.all_published
+    Article.where('published = ?', true).order(:id)
+  end
+
   def next_published
     self.class.where("id > ? AND published = ?", id, true).first
   end

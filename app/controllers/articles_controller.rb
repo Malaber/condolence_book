@@ -14,6 +14,10 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def list
+    render 'articles/list'
+  end
+
   def show
     article = Article.find(params[:id])
     if article && article.confirmed && article.published
