@@ -7,7 +7,7 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
     if @article.save
-      UserMailer.email_confirmation(@article).deliver
+      email_confirmation(@article)
       flash[:success] = "Bitte bestätige deine E-Mail Adresse bevor wir den Post veröffentlichen können."
       redirect_to root_url
     else
@@ -33,6 +33,23 @@ class ArticlesController < ApplicationController
   end
 
   private
+
+  def email_confirmation(article)
+    api_key = ENV['mailgun_api_key']
+    domain = ENV['mailgun_email_domain']
+
+    @article = article
+    html_output = render_to_string template: 'user_mailer/email_confirmation.text'
+
+    response = RestClient.post "https://api:#{api_key}"\
+        "@api.mailgun.net/v3/#{domain}/messages",
+                               :from => "Kondolenzbuch Pascal <info@#{domain}>",
+                               :to => "<#{article.email}>",
+                               :subject => 'Email Bestätigung',
+                               :text => html_output.to_str
+
+    JSON.parse(response)
+  end
 
   def article_params
     params.require(:article).permit(:title, :text, :tag, :email)

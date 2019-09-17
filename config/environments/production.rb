@@ -7,12 +7,6 @@ Rails.application.configure do
   config.hosts << 'condolence-pascal.malaber.de'
   config.hosts << 'pascal-brand.de'
 
-  config.action_mailer.delivery_method = :mailgun
-  config.action_mailer.mailgun_settings = {
-      api_key: ENV['mailgun_api_key'],
-      domain: ENV['mailgun_email_domain']
-  }
-
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
   # and those relying on copy on write to perform better.
