@@ -57,7 +57,7 @@ class ArticlesController < ApplicationController
     html_output = render_to_string template: 'user_mailer/email_confirmation.text'
 
     response = RestClient.post "https://api:#{api_key}"\
-        "@api.mailgun.net/v3/#{domain}/messages",
+        "@api.eu.mailgun.net/v3/#{domain}/messages",
                                :from => "Kondolenzbuch Pascal <info@#{domain}>",
                                :to => "<#{article.email}>",
                                :subject => 'Email Bestätigung',
