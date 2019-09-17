@@ -15,8 +15,13 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @article = Article.find(params[:id])
-    render 'articles/show'
+    article = Article.find(params[:id])
+    if article && article.confirmed && article.published
+      @article = article
+      render 'articles/show'
+    else
+      not_found
+    end
   end
 
   def confirm_email
