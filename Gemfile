@@ -57,6 +57,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # custom
+gem 'font-awesome-rails'
 gem 'rest-client'
 gem 'ckeditor'
 gem 'mini_magick'
