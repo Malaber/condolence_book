@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2019_09_15_185619) do
   end
 
   create_table "articles", force: :cascade do |t|
-    t.string "title"
+    t.string "name"
     t.string "text"
     t.string "email"
     t.string "tag"
