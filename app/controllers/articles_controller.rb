@@ -75,7 +75,7 @@ class ArticlesController < ApplicationController
     html_output = render_to_string template: 'user_mailer/email_publication.text'
 
     response = RestClient.post "https://api:#{api_key}"\
-        "@api.mailgun.net/v3/#{domain}/messages",
+        "@api.eu.mailgun.net/v3/#{domain}/messages",
                                :from => "Kondolenzbuch Pascal <info@#{domain}>",
                                :to => "<#{confirmation_email}>",
                                :subject => 'Post Bestätigung',
@@ -92,7 +92,7 @@ class ArticlesController < ApplicationController
     html_output = render_to_string template: 'user_mailer/post_published.text'
 
     response = RestClient.post "https://api:#{api_key}"\
-        "@api.mailgun.net/v3/#{domain}/messages",
+        "@api.eu.mailgun.net/v3/#{domain}/messages",
                                :from => "Kondolenzbuch Pascal <info@#{domain}>",
                                :to => "<#{article.email}>",
                                :subject => 'Post Veröffentlicht',
@@ -102,6 +102,6 @@ class ArticlesController < ApplicationController
   end
 
   def article_params
-    params.require(:article).permit(:title, :text, :tag, :email)
+    params.require(:article).permit(:name, :text, :tag, :email)
   end
 end
