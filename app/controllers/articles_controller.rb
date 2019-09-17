@@ -35,6 +35,7 @@ class ArticlesController < ApplicationController
     article = Article.find_by_publish_token(params[:id])
     if article
       article.publish!
+      post_published_notice(article)
       redirect_to article
     else
       redirect_to "#{root_url}?unknown_token=true"
@@ -73,6 +74,23 @@ class ArticlesController < ApplicationController
                                :from => "Kondolenzbuch Pascal <info@#{domain}>",
                                :to => "<#{confirmation_email}>",
                                :subject => 'Post Bestätigung',
+                               :text => html_output.to_str
+
+    JSON.parse(response)
+  end
+
+  def post_published_notice(article)
+    api_key = ENV['mailgun_api_key']
+    domain = ENV['mailgun_email_domain']
+
+    @article = article
+    html_output = render_to_string template: 'user_mailer/post_published.text'
+
+    response = RestClient.post "https://api:#{api_key}"\
+        "@api.mailgun.net/v3/#{domain}/messages",
+                               :from => "Kondolenzbuch Pascal <info@#{domain}>",
+                               :to => "<#{article.email}>",
+                               :subject => 'Post Veröffentlicht',
                                :text => html_output.to_str
 
     JSON.parse(response)
