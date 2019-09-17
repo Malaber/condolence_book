@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
-  get 'loaderio-1c493a70a663a13d0e37083f945c6a5b', to: 'filler#loader'
+  get 'loaderio-d36b21d7c951450f128935fa35e153bd', to: 'filler#loader'
   get 'articles/list', to: 'articles#list'
   resources :articles do
     member do
