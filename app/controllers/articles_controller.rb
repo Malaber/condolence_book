@@ -8,8 +8,7 @@ class ArticlesController < ApplicationController
     @article = Article.new(article_params)
     if @article.save
       email_confirmation(@article)
-      flash[:success] = "Bitte bestätige deine E-Mail Adresse bevor wir den Post veröffentlichen können."
-      redirect_to root_url
+      redirect_to "#{root_url}?please_confirm_email=true"
     else
       flash[:error] = "Es ist ein Fehler aufgetreten, bitte versuche es erneut."
     end
@@ -25,12 +24,10 @@ class ArticlesController < ApplicationController
     if article
       if article.email_activate!
         post_publish(article)
-        flash[:success] = "Vielen Dank! Deine E-Mail Adresse wurde bestätigt. \nWir überprüfen deinen Post und veröffentlichen ihn dann."
-        redirect_to root_url
+        redirect_to "#{root_url}?mail_confirmed=true"
       end
     else
-      flash[:error] = "Dieses Token ist nicht gültig."
-      redirect_to root_url
+      redirect_to "#{root_url}?unknown_token=true"
     end
   end
 
@@ -38,11 +35,9 @@ class ArticlesController < ApplicationController
     article = Article.find_by_publish_token(params[:id])
     if article
       article.publish!
-      flash[:success] = "Vielen Dank! Der Post wurde veröffentlicht."
       redirect_to article
     else
-      flash[:error] = "Dieses Token ist nicht gültig."
-      redirect_to root_url
+      redirect_to "#{root_url}?unknown_token=true"
     end
   end
 
