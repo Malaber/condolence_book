@@ -11,9 +11,15 @@ class Article < ApplicationRecord
     self.class.where("id < ? AND published = ?", id, true).last
   end
 
-  def email_activate
+  def email_activate!
     self.confirmed = true
     self.confirm_token = nil
+    save!(:validate => false)
+  end
+
+  def publish!
+    self.published = true
+    self.publish_token = nil
     save!(:validate => false)
   end
 

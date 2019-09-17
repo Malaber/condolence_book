@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :articles do
     member do
       get :confirm_email
+      get :publish_post
     end
   end
   get 'privacy', to: 'privacy#get'

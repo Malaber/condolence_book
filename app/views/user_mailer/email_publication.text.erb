@@ -1,0 +1,13 @@
+<%= @article.email %> möchte folgenden Post veröffentlichen:
+
+-----
+
+<%= @article.text.html_safe %>
+
+-----
+
+Bitte bestätige mit dem Nachfolgenden Link, wenn dieser Post veröffentlicht werden soll.
+
+<%= publish_post_article_url(@article.publish_token) %>
+
+Vielen Dank!
