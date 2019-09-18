@@ -110,6 +110,11 @@ class ArticlesController < ApplicationController
   end
 
   def article_params
-    params.require(:article).permit(:name, :text, :tag, :email)
+    params.require(:article)
+          .permit(:name, :text, :tag, :email).tap do |article_params|
+      article_params.require(:name)
+      article_params.require(:tag)
+      article_params.require(:email)
+    end
   end
 end
