@@ -3,57 +3,91 @@
 <% end %>
 
 
-<h3>Neuen Eintrag erstellen</h3>
-<p>Bitte gib unten im Eingabefeld deinen Text ein, den du im Buch veröffentlichen möchtest.</p>
+<main>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h3>Neuen Eintrag erstellen</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <p>Bitte gib unten im Eingabefeld deinen Text ein, den du im Buch veröffentlichen möchtest.</p>
+      </div>
+    </div>
 
-<%= form_for @article do |form| %>
-  <p>
-    <%= form.label :name, 'Name' %><br>
-    <%= form.text_field :name %>
-  </p>
+      <%= form_for @article do |form| %>
+        <div class="row">
+          <div class="col-12">
+            <p>
+              <%= form.label :name, 'Name' %><br>
+              <%= form.text_field :name %>
+            </p>
+          </div>
+        </div>
 
-  <p>
-    <%= form.label :text %><br>
-    <%= form.cktext_area :text %>
-  </p>
+        <div class="row">
+          <div class="col-12">
+            <p>
+              <%= form.label :text %><br>
+              <%= form.cktext_area :text %>
+            </p>
+          </div>
+        </div>
 
-  <p>
-    <%= form.label :email, 'E-Mail' %><br>
-    <%= form.text_field :email %>
-    Bitte gib deine E-Mail Adresse ein, diese muss bestätigt werden, bevor dein Post veröffentlicht wird.
-  </p>
+        <div class="row">
+          <p>
+            Woher kennst du Pascal? Wähle was am besten passt.
+            <br>
+            <%= form.radio_button :tag, 'verwandt' %>
+            <%= form.label :tag, 'Verwandtschaft', :value => 'verwandt' %>
 
-  <p>
-    Woher kennst du Pascal? Wähle was am besten passt. <br>
-    <%= form.radio_button :tag, 'verwandt' %>
-    <%= form.label :tag, 'Verwandschaft', :value => 'verwandt' %>
+            <%= form.radio_button :tag, 'freund', :checked => true %>
+            <%= form.label :tag, 'Freund', :value => 'freund'%>
 
-    <%= form.radio_button :tag, 'freund', :checked => true %>
-    <%= form.label :tag, 'Freund', :value => 'freund'%>
+            <%= form.radio_button :tag, 'schule' %>
+            <%= form.label :tag, 'Schule', :value => 'schule' %>
 
-    <%= form.radio_button :tag, 'schule' %>
-    <%= form.label :tag, 'Schule', :value => 'schule' %>
+            <%= form.radio_button :tag, 'pfadfinder' %>
+            <%= form.label :tag, 'Pfadfinder', :value => 'pfadfinder' %>
 
-    <%= form.radio_button :tag, 'pfadfinder' %>
-    <%= form.label :tag, 'Pfadfinder', :value => 'pfadfinder' %>
+            <%= form.radio_button :tag, 'hockey' %>
+            <%= form.label :tag, 'Hockey', :value => 'hockey' %>
 
-    <%= form.radio_button :tag, 'hockey' %>
-    <%= form.label :tag, 'Hockey', :value => 'hockey' %>
+            <%= form.radio_button :tag, 'studium' %>
+            <%= form.label :tag, 'Studium', :value => 'studium' %>
 
-    <%= form.radio_button :tag, 'studium' %>
-    <%= form.label :tag, 'Studium', :value => 'studium' %>
+            <%= form.radio_button :tag, 'firma' %>
+            <%= form.label :tag, 'Firma', :value => 'firma' %>
 
-    <%= form.radio_button :tag, 'firma' %>
-    <%= form.label :tag, 'Firma', :value => 'firma' %>
+            <%= form.radio_button :tag, 'andere' %>
+            <%= form.label :tag, 'Andere', :value => 'andere' %>
 
-    <%= form.radio_button :tag, 'andere' %>
-    <%= form.label :tag, 'Andere', :value => 'andere' %>
+          </p>
+        </div>
 
-  </p>
+        <div class="row">
+          <div class="col-12">
+            <p>
+              <%= form.label :email, 'E-Mail' %><br>
+              <%= form.text_field :email %>
+              <br>
+              <small class="form-text text-muted">
+                Bitte gib deine E-Mail Adresse ein, diese muss bestätigt werden, bevor dein Post veröffentlicht wird.
+              </small>
+            </p>
+          </div>
+        </div>
 
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %>
+        <div class="row">
+          <div class="col-12">
+            <p>
+              <%= form.submit %>
+            </p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 
-<%= render partial: "partials/footer" %>
+</main>
