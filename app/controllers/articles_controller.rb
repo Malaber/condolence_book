@@ -56,12 +56,13 @@ class ArticlesController < ApplicationController
   def email_confirmation(article)
     api_key = ENV['mailgun_api_key']
     domain = ENV['mailgun_email_domain']
+    mailgun_api = ENV['mailgun_api']
 
     @article = article
     html_output = render_to_string template: 'user_mailer/email_confirmation.text'
 
     response = RestClient.post "https://api:#{api_key}"\
-        "@api.eu.mailgun.net/v3/#{domain}/messages",
+        "@#{mailgun_api}#{domain}/messages",
                                :from => "Kondolenzbuch Pascal <info@#{domain}>",
                                :to => "<#{article.email}>",
                                :subject => 'Email Bestätigung',
@@ -73,13 +74,14 @@ class ArticlesController < ApplicationController
   def post_publish(article)
     api_key = ENV['mailgun_api_key']
     domain = ENV['mailgun_email_domain']
+    mailgun_api = ENV['mailgun_api']
     confirmation_email = ENV['post_publish_email']
 
     @article = article
     html_output = render_to_string template: 'user_mailer/email_publication.text'
 
     response = RestClient.post "https://api:#{api_key}"\
-        "@api.eu.mailgun.net/v3/#{domain}/messages",
+        "@#{mailgun_api}#{domain}/messages",
                                :from => "Kondolenzbuch Pascal <info@#{domain}>",
                                :to => "<#{confirmation_email}>",
                                :subject => 'Post Bestätigung',
@@ -91,12 +93,13 @@ class ArticlesController < ApplicationController
   def post_published_notice(article)
     api_key = ENV['mailgun_api_key']
     domain = ENV['mailgun_email_domain']
+    mailgun_api = ENV['mailgun_api']
 
     @article = article
     html_output = render_to_string template: 'user_mailer/post_published.text'
 
     response = RestClient.post "https://api:#{api_key}"\
-        "@api.eu.mailgun.net/v3/#{domain}/messages",
+        "@#{mailgun_api}#{domain}/messages",
                                :from => "Kondolenzbuch Pascal <info@#{domain}>",
                                :to => "<#{article.email}>",
                                :subject => 'Post Veröffentlicht',
