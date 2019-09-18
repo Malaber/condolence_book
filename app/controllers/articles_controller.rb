@@ -8,10 +8,13 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
     if @article.save
-      email_confirmation(@article)
-      redirect_to "#{root_url}?please_confirm_email=true"
+      if email_confirmation(@article)
+        redirect_to "#{root_url}?please_confirm_email=true"
+      else
+        not_found
+      end
     else
-      flash[:error] = "Es ist ein Fehler aufgetreten, bitte versuche es erneut."
+      not_found
     end
   end
 
@@ -78,14 +81,18 @@ class ArticlesController < ApplicationController
     domain = ENV['mailgun_email_domain']
     mailgun_api = ENV['mailgun_api']
 
-    response = RestClient.post "https://api:#{api_key}"\
-        "@#{mailgun_api}#{domain}/messages",
+    begin
+      RestClient.post "https://api:#{api_key}"\
+          "@#{mailgun_api}#{domain}/messages",
                                :from => "Kondolenzbuch Pascal <info@#{domain}>",
                                :to => "<#{to_email}>",
                                :subject => subject,
                                :text => text
+    rescue RestClient::BadRequest
+      return false
+    end
 
-    JSON.parse(response)
+    true
   end
 
   def article_params
