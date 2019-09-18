@@ -12,6 +12,18 @@
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
+    <style>
+      body {
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+      }
+      
+      main {
+        flex: 1 0 auto;
+      }
+    </style>
+
     <%= yield :head %>
 
     <% if flash[:popup] %>
@@ -21,5 +33,6 @@
 
   <body>
     <%= yield %>
+    <%= render partial: "partials/footer" %>
   </body>
 </html>
