@@ -13,6 +13,10 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <%= yield :head %>
+
+    <% if flash[:popup] %>
+      <script> alert(' <%= flash[:popup] %> '); </script>
+    <% end %>
   </head>
 
   <body>

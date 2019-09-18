@@ -1,5 +1,9 @@
 class ArticlesController < ApplicationController
 
+  EMAIL_CONFIRMATION_NEEDED = 'Deine E-Mail Adresse wurde bestätigt\n\nWir überprüfen deinen Post nun und veröffentlichen ihn dann.\n\nVielen Dank, dass du dir die Zeit genommen hast!'
+  EMAIL_WAS_CONFIRMED = 'Dein Post wurde gespeichert.\n\nBitte bestätige deine E-Mail Adresse, damit wir ihn veröffentlichen können.'
+  WRONG_TOKEN = 'Dieses Token ist ungültig!'
+
   def new
     @article = Article.new
     render 'articles/new'
@@ -9,7 +13,8 @@ class ArticlesController < ApplicationController
     @article = Article.new(article_params)
     if @article.save
       if email_confirmation(@article)
-        redirect_to "#{root_url}?please_confirm_email=true"
+        flash[:popup] = EMAIL_CONFIRMATION_NEEDED
+        redirect_to root_url
       else
         not_found
       end
@@ -36,10 +41,12 @@ class ArticlesController < ApplicationController
     if @article
       if @article.email_activate!
         post_publish(@article)
-        redirect_to "#{root_url}?mail_confirmed=true"
+        flash[:popup] = EMAIL_WAS_CONFIRMED
+        redirect_to root
       end
     else
-      redirect_to "#{root_url}?unknown_token=true"
+      flash[:popup] = WRONG_TOKEN
+      redirect_to root_url
     end
   end
 
@@ -50,7 +57,8 @@ class ArticlesController < ApplicationController
       post_published_notice(@article)
       redirect_to @article
     else
-      redirect_to "#{root_url}?unknown_token=true"
+      flash[:popup] = WRONG_TOKEN
+      redirect_to root_url
     end
   end
 
