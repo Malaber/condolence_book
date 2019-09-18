@@ -26,6 +26,6 @@ production:
   host: <%= ENV['postgres_host'] %>
   timeout: 5000
   adapter: postgresql
-  username: <%= ENV['postgres_username'] %>
-  password: <%= ENV['postgres_password'] %>
-  database: <%= ENV['postgres_database'] %>
+  username: <%= ENV['POSTGRES_USER'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+  database: <%= ENV['POSTGRES_DB'] %>
