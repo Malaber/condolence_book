@@ -11,15 +11,13 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    if @article.save
-      if email_confirmation(@article)
-        flash[:popup] = EMAIL_CONFIRMATION_NEEDED
-        redirect_to root_url
-      else
-        not_found
-      end
+    return unless @article.save
+
+    if email_confirmation(@article)
+      flash[:popup] = EMAIL_CONFIRMATION_NEEDED
+      redirect_to root_url
     else
-      not_found
+      render 'error/invalid_email', :status => :bad_request
     end
   end
 
