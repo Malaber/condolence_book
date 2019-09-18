@@ -54,56 +54,36 @@ class ArticlesController < ApplicationController
   private
 
   def email_confirmation(article)
-    api_key = ENV['mailgun_api_key']
-    domain = ENV['mailgun_email_domain']
-    mailgun_api = ENV['mailgun_api']
-
-    @article = article
     html_output = render_to_string template: 'user_mailer/email_confirmation.text'
 
-    response = RestClient.post "https://api:#{api_key}"\
-        "@#{mailgun_api}#{domain}/messages",
-                               :from => "Kondolenzbuch Pascal <info@#{domain}>",
-                               :to => "<#{article.email}>",
-                               :subject => 'Email Bestätigung',
-                               :text => html_output.to_str
-
-    JSON.parse(response)
+    send_mail(article.email, 'Email Bestätigung', html_output)
   end
 
   def post_publish(article)
-    api_key = ENV['mailgun_api_key']
-    domain = ENV['mailgun_email_domain']
-    mailgun_api = ENV['mailgun_api']
     confirmation_email = ENV['post_publish_email']
 
-    @article = article
     html_output = render_to_string template: 'user_mailer/email_publication.text'
 
-    response = RestClient.post "https://api:#{api_key}"\
-        "@#{mailgun_api}#{domain}/messages",
-                               :from => "Kondolenzbuch Pascal <info@#{domain}>",
-                               :to => "<#{confirmation_email}>",
-                               :subject => 'Post Bestätigung',
-                               :text => html_output.to_str
-
-    JSON.parse(response)
+    send_mail(confirmation_email, 'Post Freigabe', html_output)
   end
 
   def post_published_notice(article)
+    html_output = render_to_string template: 'user_mailer/post_published.text'
+
+    send_mail(article.email, 'Post Veröffentlicht', html_output)
+  end
+
+  def send_mail(to_email, subject, text)
     api_key = ENV['mailgun_api_key']
     domain = ENV['mailgun_email_domain']
     mailgun_api = ENV['mailgun_api']
 
-    @article = article
-    html_output = render_to_string template: 'user_mailer/post_published.text'
-
     response = RestClient.post "https://api:#{api_key}"\
         "@#{mailgun_api}#{domain}/messages",
                                :from => "Kondolenzbuch Pascal <info@#{domain}>",
-                               :to => "<#{article.email}>",
-                               :subject => 'Post Veröffentlicht',
-                               :text => html_output.to_str
+                               :to => "<#{to_email}>",
+                               :subject => subject,
+                               :text => text
 
     JSON.parse(response)
   end
