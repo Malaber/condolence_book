@@ -21,7 +21,7 @@
           <div class="col-12">
             <p>
               <%= form.label :name, 'Name' %><br>
-              <%= form.text_field :name %>
+              <%= form.text_field :name, :class => "form-control" %>
             </p>
           </div>
         </div>
@@ -30,48 +30,66 @@
           <div class="col-12">
             <p>
               <%= form.label :text %><br>
-              <%= form.cktext_area :text %>
+              <%= form.cktext_area :text, :class => "form-control" %>
             </p>
           </div>
         </div>
 
+        <hr>
+
         <div class="row">
-          <p>
-            Woher kennst du Pascal? Wähle was am besten passt.
-            <br>
-            <%= form.radio_button :tag, 'verwandt' %>
-            <%= form.label :tag, 'Verwandtschaft', :value => 'verwandt' %>
+          <div class="col-12">
+            <p>
+              Woher kennst du Pascal? Wähle was am besten passt.
+              <div class="custom-control custom-radio custom-control-inline">
+                <%= form.radio_button :tag, 'verwandt', :class => "custom-control-input" %>
+                <%= form.label :tag, 'Verwandtschaft', :value => 'verwandt', :class => "custom-control-label"%>
+              </div>
 
-            <%= form.radio_button :tag, 'freund', :checked => true %>
-            <%= form.label :tag, 'Freund', :value => 'freund'%>
+              <div class="custom-control custom-radio custom-control-inline">
+                <%= form.radio_button :tag, 'freund', :checked => true, :class => "custom-control-input" %>
+                <%= form.label :tag, 'Freund', :value => 'freund', :class => "custom-control-label"%>
+              </div>
 
-            <%= form.radio_button :tag, 'schule' %>
-            <%= form.label :tag, 'Schule', :value => 'schule' %>
+              <div class="custom-control custom-radio custom-control-inline">
+                <%= form.radio_button :tag, 'schule', :checked => true, :class => "custom-control-input" %>
+                <%= form.label :tag, 'Schule', :value => 'schule', :class => "custom-control-label"%>
+              </div>
 
-            <%= form.radio_button :tag, 'pfadfinder' %>
-            <%= form.label :tag, 'Pfadfinder', :value => 'pfadfinder' %>
+              <div class="custom-control custom-radio custom-control-inline">
+                <%= form.radio_button :tag, 'pfadfinder', :checked => true, :class => "custom-control-input" %>
+                <%= form.label :tag, 'Pfandfinder', :value => 'pfadfinder', :class => "custom-control-label"%>
+              </div>
 
-            <%= form.radio_button :tag, 'hockey' %>
-            <%= form.label :tag, 'Hockey', :value => 'hockey' %>
+              <div class="custom-control custom-radio custom-control-inline">
+                <%= form.radio_button :tag, 'hockey', :checked => true, :class => "custom-control-input" %>
+                <%= form.label :tag, 'Hockey', :value => 'hockey', :class => "custom-control-label"%>
+              </div>
 
-            <%= form.radio_button :tag, 'studium' %>
-            <%= form.label :tag, 'Studium', :value => 'studium' %>
+              <div class="custom-control custom-radio custom-control-inline">
+                <%= form.radio_button :tag, 'studium', :checked => true, :class => "custom-control-input" %>
+                <%= form.label :tag, 'Studium', :value => 'studium', :class => "custom-control-label"%>
+              </div>
 
-            <%= form.radio_button :tag, 'firma' %>
-            <%= form.label :tag, 'Firma', :value => 'firma' %>
+              <div class="custom-control custom-radio custom-control-inline">
+                <%= form.radio_button :tag, 'firma', :checked => true, :class => "custom-control-input" %>
+                <%= form.label :tag, 'Firma', :value => 'firma', :class => "custom-control-label"%>
+              </div>
 
-            <%= form.radio_button :tag, 'andere' %>
-            <%= form.label :tag, 'Andere', :value => 'andere' %>
+              <div class="custom-control custom-radio custom-control-inline">
+                <%= form.radio_button :tag, 'andere', :checked => true, :class => "custom-control-input" %>
+                <%= form.label :tag, 'Andere', :value => 'andere', :class => "custom-control-label"%>
+              </div>
 
-          </p>
+            </p>
+          </div>
         </div>
 
         <div class="row">
           <div class="col-12">
             <p>
               <%= form.label :email, 'E-Mail' %><br>
-              <%= form.text_field :email %>
-              <br>
+              <%= form.text_field :email, :class => "form-control" %>
               <small class="form-text text-muted">
                 Bitte gib deine E-Mail Adresse ein, diese muss bestätigt werden, bevor dein Post veröffentlicht wird.
               </small>
@@ -80,9 +98,9 @@
         </div>
 
         <div class="row">
-          <div class="col-12">
+          <div class="col-12 text-center">
             <p>
-              <%= form.submit %>
+              <%= form.submit 'Artikel erstellen', :class => "btn btn-primary center", :type => "button" %>
             </p>
           </div>
         </div>
