@@ -20,9 +20,8 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    article = Article.find(params[:id])
-    if article && article.confirmed && article.published
-      @article = article
+    @article = Article.find(params[:id])
+    if @article && @article.confirmed && @article.published
       render 'articles/show'
     else
       not_found
@@ -30,10 +29,10 @@ class ArticlesController < ApplicationController
   end
 
   def confirm_email
-    article = Article.find_by_confirm_token(params[:id])
-    if article
-      if article.email_activate!
-        post_publish(article)
+    @article = Article.find_by_confirm_token(params[:id])
+    if @article
+      if @article.email_activate!
+        post_publish(@article)
         redirect_to "#{root_url}?mail_confirmed=true"
       end
     else
@@ -42,11 +41,11 @@ class ArticlesController < ApplicationController
   end
 
   def publish_post
-    article = Article.find_by_publish_token(params[:id])
-    if article
-      article.publish!
-      post_published_notice(article)
-      redirect_to article
+    @article = Article.find_by_publish_token(params[:id])
+    if @article
+      @article.publish!
+      post_published_notice(@article)
+      redirect_to @article
     else
       redirect_to "#{root_url}?unknown_token=true"
     end
