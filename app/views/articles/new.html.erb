@@ -6,7 +6,7 @@
 <h3>Neuen Eintrag erstellen</h3>
 <p>Bitte gib unten im Eingabefeld deinen Text ein, den du im Buch veröffentlichen möchtest.</p>
 
-<%= form_with scope: :article, url: articles_path, local: true do |form| %>
+<%= form_for @article do |form| %>
   <p>
     <%= form.label :name, 'Name' %><br>
     <%= form.text_field :name %>

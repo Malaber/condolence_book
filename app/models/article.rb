@@ -1,5 +1,8 @@
 class Article < ApplicationRecord
 
+  include ActiveModel::Validations
+  validates_presence_of :name, :email, :tag
+
   before_create :generate_confirmation_token
   before_create :generate_publish_token
 
