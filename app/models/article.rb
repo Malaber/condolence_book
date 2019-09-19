@@ -1,7 +1,8 @@
-class Article < ApplicationRecord
+# frozen_string_literal: true
 
+class Article < ApplicationRecord
   include ActiveModel::Validations
-  validates_presence_of :name, :email, :tag
+  validates :name, :email, :tag, presence: true
 
   before_create :generate_confirmation_token
   before_create :generate_publish_token
@@ -11,36 +12,32 @@ class Article < ApplicationRecord
   end
 
   def next_published
-    self.class.where("id > ? AND published = ?", id, true).first
+    self.class.where('id > ? AND published = ?', id, true).first
   end
 
   def previous_published
-    self.class.where("id < ? AND published = ?", id, true).last
+    self.class.where('id < ? AND published = ?', id, true).last
   end
 
   def email_activate!
     self.confirmed = true
     self.confirm_token = nil
-    save!(:validate => false)
+    save!(validate: false)
   end
 
   def publish!
     self.published = true
     self.publish_token = nil
-    save!(:validate => false)
+    save!(validate: false)
   end
 
   private
 
   def generate_confirmation_token
-    if confirm_token.blank?
-      self.confirm_token = SecureRandom.urlsafe_base64.to_s
-    end
+    self.confirm_token = SecureRandom.urlsafe_base64.to_s if confirm_token.blank?
   end
 
   def generate_publish_token
-    if publish_token.blank?
-      self.publish_token = SecureRandom.urlsafe_base64.to_s
-    end
+    self.publish_token = SecureRandom.urlsafe_base64.to_s if publish_token.blank?
   end
 end

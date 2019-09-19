@@ -1,5 +1,6 @@
-class ArticlesController < ApplicationController
+# frozen_string_literal: true
 
+class ArticlesController < ApplicationController
   EMAIL_CONFIRMATION_NEEDED = 'Dein Post wurde gespeichert.\n\nBitte bestätige deine E-Mail Adresse, damit wir ihn veröffentlichen können.'
   EMAIL_WAS_CONFIRMED = 'Deine E-Mail Adresse wurde bestätigt\n\nWir überprüfen deinen Post nun und veröffentlichen ihn dann.\n\nVielen Dank, dass du dir die Zeit genommen hast!'
   WRONG_TOKEN = 'Dieses Token ist ungültig!'
@@ -17,7 +18,7 @@ class ArticlesController < ApplicationController
       flash[:popup] = EMAIL_CONFIRMATION_NEEDED
       redirect_to root_url
     else
-      render 'error/invalid_email', :status => :bad_request
+      render 'error/invalid_email', status: :bad_request
     end
   end
 
@@ -27,7 +28,7 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
-    if @article && @article.confirmed && @article.published
+    if @article&.confirmed && @article&.published
       render 'articles/show'
     else
       not_found
@@ -35,7 +36,7 @@ class ArticlesController < ApplicationController
   end
 
   def confirm_email
-    @article = Article.find_by_confirm_token(params[:id])
+    @article = Article.find_by(confirm_token: params[:id])
     if @article
       if @article.email_activate!
         post_publish(@article)
@@ -49,7 +50,7 @@ class ArticlesController < ApplicationController
   end
 
   def publish_post
-    @article = Article.find_by_publish_token(params[:id])
+    @article = Article.find_by(publish_token: params[:id])
     if @article
       @article.publish!
       post_published_notice(@article)
@@ -68,7 +69,7 @@ class ArticlesController < ApplicationController
     send_mail(article.email, 'Email Bestätigung', html_output)
   end
 
-  def post_publish(article)
+  def post_publish(_article)
     confirmation_email = ENV['post_publish_email']
 
     html_output = render_to_string template: 'user_mailer/email_publication.text'
@@ -90,10 +91,10 @@ class ArticlesController < ApplicationController
     begin
       RestClient.post "https://api:#{api_key}"\
           "@#{mailgun_api}#{domain}/messages",
-                               :from => "Kondolenzbuch Pascal <info@#{domain}>",
-                               :to => "<#{to_email}>",
-                               :subject => subject,
-                               :text => text
+                      from: "Kondolenzbuch Pascal <info@#{domain}>",
+                      to: "<#{to_email}>",
+                      subject: subject,
+                      text: text
     rescue RestClient::BadRequest
       return false
     end
