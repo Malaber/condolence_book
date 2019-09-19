@@ -31,7 +31,8 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <p>
-                        <%= link_to "Buch öffnen", impressum_path, class: "btn btn-info", role: "button" %>
+                        <% @first_article = Article.where('confirmed = ? AND published = ?', true, true).first %>
+                        <%= link_to "Buch öffnen", @first_article.nil? ? articles_list_path : article_path(@first_article.id), class: "btn btn-info", role: "button" %>
                     </p>
                 </div>
             </div>
