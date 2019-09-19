@@ -35,6 +35,12 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def fullscreen
+    @article = Article.find(params[:id])
+    @fullscreen = true
+    render 'articles/fullscreen'
+  end
+
   def confirm_email
     @article = Article.find_by(confirm_token: params[:id])
     if @article

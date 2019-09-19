@@ -8,6 +8,9 @@ Rails.application.routes.draw do
       get :confirm_email
       get :publish_post
     end
+    member do
+      get 'fullscreen'
+    end
   end
   get 'privacy', to: 'privacy#get'
   get 'impressum', to: 'impressum#get'
