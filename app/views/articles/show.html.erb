@@ -41,7 +41,7 @@
     <div class="book_spacer"></div>
     <%= image_tag('buch.png', :alt => 'Buch') %>
     <div class="book_content scroll">
-      <%=raw @article.text %>
+      <%= render partial: "partials/book_text" %>
     </div>
   </div>
 </main>
