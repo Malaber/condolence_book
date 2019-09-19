@@ -36,6 +36,15 @@
 
 <main>
   <div class="container book text-center">
+    <% @previous_published_article = @article.previous_published
+       unless @previous_published_article.nil? %>
+      <a class="btn btn-primary float-md-left" href="<%= article_path(@previous_published_article.id) %>" role="button"><%= fa_icon "chevron-left" %></a>
+    <% end %>
+    <% @next_published_article = @article.next_published
+       unless @next_published_article.nil? %>
+      <a class="btn btn-primary float-md-right" href="<%= article_path(@next_published_article.id) %>" role="button"><%= fa_icon "chevron-right" %></a>
+    <% end %>
+
     <div class="book_spacer"></div>
     <%= image_tag('buch.png', :alt => 'Buch') %>
     <div class="book_content scroll">
