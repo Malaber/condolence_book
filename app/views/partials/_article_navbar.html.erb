@@ -14,12 +14,16 @@
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      <div class="btn-group navigation" role="group">
-        <% @previous_published_article = @article.previous_published %>
-          <a class="btn btn-info <%= "disabled" if @previous_published_article.nil? %>" href="<%= article_path(@previous_published_article.id) unless @previous_published_article.nil? %>" role="button"><%= fa_icon "chevron-left" %></a>
-        <% @next_published_article = @article.next_published %>
-          <a class="btn btn-info <%= "disabled" if @next_published_article.nil? %>" href="<%= article_path(@next_published_article.id) unless @next_published_article.nil? %>" role="button"><%= fa_icon "chevron-right" %></a>
-      </div>
+      <% unless @fullscreen %>
+        <div class="btn-group navigation" role="group">
+          <% @previous_published_article = @article.previous_published %>
+            <a class="btn btn-info <%= "disabled" if @previous_published_article.nil? %>" href="<%= article_path(@previous_published_article.id) unless @previous_published_article.nil? %>" role="button"><%= fa_icon "chevron-left" %></a>
+          <% @next_published_article = @article.next_published %>
+            <a class="btn btn-info <%= "disabled" if @next_published_article.nil? %>" href="<%= article_path(@next_published_article.id) unless @next_published_article.nil? %>" role="button"><%= fa_icon "chevron-right" %></a>
+        </div>
+      <% end %>
+        <% @fullscreen_icon = @fullscreen ? "close" : "expand" %>
+        <a class="btn btn-info" href="<%= @fullscreen ? article_path(@article.id) : fullscreen_article_path(@article.id) %>" role="button"><%= fa_icon @fullscreen_icon %></a>
     </form>
   </div>
 </nav>
