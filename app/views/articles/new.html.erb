@@ -1,6 +1,8 @@
 <% content_for :head do %>
   <% javascript_include_tag Ckeditor.cdn_url %>
 
+  <%= stylesheet_link_tag "no_bg", media: "all", "data-turbolinks-track" => "reload" %>
+
   <title>Neuer Eintrag - Kondolenzbuch Pascal</title>
 <% end %>
 

@@ -1,6 +1,8 @@
 <% content_for :head do%>
+  <%= stylesheet_link_tag "bg", media: "all", "data-turbolinks-track" => "reload" %>
+
   <title>Inhaltsverzeichnis - Kondolenzbuch Pascal</title>
-<% end %>>
+<% end %>
 
 <% @article_list = Article.all_published %>
 
