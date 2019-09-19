@@ -2,10 +2,7 @@
     <style>
 
         body {
-            background-image: url(<%= asset_path 'background.png' %>);
-            background-attachment: fixed;
-            background-size: cover;
-            background-repeat: no-repeat;
+            background-image: url(<%= asset_path 'wood.jpg' %>);
             background-position: center;
         }
 
@@ -13,8 +10,11 @@
             margin-top: 7%;
             margin-left: 18.5%;
             padding-right: 11%;
-            overflow: scroll;
             height: 800px;
+        }
+
+        .scroll {
+            overflow: scroll;
         }
 
         .navigation {
@@ -22,51 +22,121 @@
             bottom: 50px; 
             left: 150px;
         }
+
+        .book_content {
+          position: absolute;
+          top: 0px;
+          left: 150px;
+        }
+
+        .container {
+          position: relative;
+        }
     </style>
 <% end %>
 
 <main>
     <div class="container content">
-        <div class="row">
-            <div class="col-12">
-                <p><%=raw @article.text %></p>
-            </div>
-            <div class="col-12">
-                <% if @article.name? %>
-                    <h5><%= @article.name %></h5>
-                <% end %>
-                    <span class="badge badge-pill badge-info float-right inline"><%= @article.tag %></span>
-            </div>
+        <%= image_tag('buch.png', :alt => 'Buch', :class => 'testo') %>
+        <div class="book_content scroll">
+          <div class="row">
+              <div class="col-12">
+                  <p><%=raw @article.text %></p>
+              </div>
+              <div class="col-12">
+                  <% if @article.name? %>
+                      <h5><%= @article.name %></h5>
+                  <% end %>
+                      <span class="badge badge-pill badge-info float-right inline"><%= @article.tag %></span>
+              </div>
+          </div>
+gfd<br>
+          <br>
+          <br>
+          <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+          fgd
+          fgdfg
+
+          gf
+
+          fd<br>
+
+          g
+          fg<br>
+
+          fgd
+          gf
+          fgd<br>
+
+          <br>
+
+          g
+          gdf
+          df
+          dgf
+          dg<br>
+
+          dg
+          df
+          g<br>
+          <br>
+
+          dfg
+          dfg<br>
+          <br>
+          <br>
+          <br>
+
+          dg
+          d<br>
+          <br>
+
+          gd
+          fg
+          dfg
+          d
+          g
+          dg<br>
+
+          d
+          g
+          dg
+          d
+          fg
+          df
+          gd
+          fg
+          d
+          fg
+          dfg
+          d
+          <br>
+          df
+          <br>
+          <br>
+          g
+          dfg
+          d
+          <br>
+          gf
+          <br>
+          df
+          <br>
+          gd
+          <br>
+          fg
+          df
+          gd
+          gf
+          d
+          fg
+          <p>Article Mail:<strong><%= @article.email %></strong></p>
+          <p>Article Published:<strong><%= @article.published? %></strong></p>
+          <p>Article Confirmed:<strong><%= @article.confirmed? %></strong></p>
         </div>
+    </div>
 
-    <p>Article Mail:<strong><%= @article.email %></strong></p>
-    <p>Article Published:<strong><%= @article.published? %></strong></p>
-    <p>Article Confirmed:<strong><%= @article.confirmed? %></strong></p>
-    <p>Turnjs library is a great option to create an ebook with embedded audio and video. We can secure the audio and video assets by using S3 link expiration feature. You can checkout the sample books and different features it offers on it's home page. This article will discuss how to integrate this library with Rails 5.
-
-Setup Dependencies
-You can read the requirements for Turnjs on the readme page. I am using jQuery version 3.3.1. Turnjs version: 4.1.0. I copied the jquery, bootstrap.js and turn.js to the vendor/assets/javascripts folder. In application.js, add the turn.js library:
-
-ein weiterer Test
-freund
-Turnjs library is a great option to create an ebook with embedded audio and video. We can secure the audio and video assets by using S3 link expiration feature. You can checkout the sample books and different features it offers on it's home page. This article will discuss how to integrate this library with Rails 5.
-
-Setup Dependencies
-You can read the requirements for Turnjs on the readme page. I am using jQuery version 3.3.1. Turnjs version: 4.1.0. I copied the jquery, bootstrap.js and turn.js to the vendor/assets/javascripts folder. In application.js, add the turn.js library:
-
-ein weiterer Test
-freund
-Turnjs library is a great option to create an ebook with embedded audio and video. We can secure the audio and video assets by using S3 link expiration feature. You can checkout the sample books and different features it offers on it's home page. This article will discuss how to integrate this library with Rails 5.
-
-Setup Dependencies
-You can read the requirements for Turnjs on the readme page. I am using jQuery version 3.3.1. Turnjs version: 4.1.0. I copied the jquery, bootstrap.js and turn.js to the vendor/assets/javascripts folder. In application.js, add the turn.js library:
-
-ein weiterer Test
-freund
-Turnjs library is a great option to create an ebook with embedded audio and video. We can secure the audio and video assets by using S3 link expiration feature. You can checkout the sample books and different features it offers on it's home page. This article will discuss how to integrate this library with Rails 5.
-
-Setup Dependencies</p>
-</div>
     <div class="btn-group navigation" role="group">
     <% @previous_published_article = @article.previous_published
         unless @previous_published_article.nil? %>
