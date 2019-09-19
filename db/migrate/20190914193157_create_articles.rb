@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateArticles < ActiveRecord::Migration[6.0]
   def change
     create_table :articles do |t|
@@ -5,9 +7,9 @@ class CreateArticles < ActiveRecord::Migration[6.0]
       t.string :text
       t.string :email
       t.string :tag
-      t.boolean :confirmed, :default => false
+      t.boolean :confirmed, default: false
       t.string :confirm_token
-      t.boolean :published, :default => false
+      t.boolean :published, default: false
       t.string :publish_token
 
       t.timestamps

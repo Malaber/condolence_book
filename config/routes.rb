@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
+  get 'articles/list', to: 'articles#list'
   resources :articles do
     member do
       get :confirm_email
