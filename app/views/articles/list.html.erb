@@ -5,6 +5,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
+                    <h3>Einträge</h3>
+                </div>
+                <div class="col-12">
                     <div class="list-group">
                         <% @article_list.each do |article| %>
                             <%= link_to "Eintrag von #{article.name}", article_path(article), class: "list-group-item list-group-item-action" %>
