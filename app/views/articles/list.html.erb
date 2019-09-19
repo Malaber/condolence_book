@@ -1,8 +1,17 @@
 <% @article_list = Article.all_published %>
 
-<% @article_list.each do |article| %>
-    <%= link_to("Eintrag von #{article.name}", article_path(article)) %><br><br>
-<% end %>
-
-
-<%= render partial: "partials/footer" %>
+<body>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="list-group">
+                        <% @article_list.each do |article| %>
+                            <%= link_to "Eintrag von #{article.name}", article_path(article), class: "list-group-item list-group-item-action" %>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
