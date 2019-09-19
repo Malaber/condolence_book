@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
 
-  EMAIL_CONFIRMATION_NEEDED = 'Deine E-Mail Adresse wurde bestätigt\n\nWir überprüfen deinen Post nun und veröffentlichen ihn dann.\n\nVielen Dank, dass du dir die Zeit genommen hast!'
-  EMAIL_WAS_CONFIRMED = 'Dein Post wurde gespeichert.\n\nBitte bestätige deine E-Mail Adresse, damit wir ihn veröffentlichen können.'
+  EMAIL_CONFIRMATION_NEEDED = 'Dein Post wurde gespeichert.\n\nBitte bestätige deine E-Mail Adresse, damit wir ihn veröffentlichen können.'
+  EMAIL_WAS_CONFIRMED = 'Deine E-Mail Adresse wurde bestätigt\n\nWir überprüfen deinen Post nun und veröffentlichen ihn dann.\n\nVielen Dank, dass du dir die Zeit genommen hast!'
   WRONG_TOKEN = 'Dieses Token ist ungültig!'
 
   def new
