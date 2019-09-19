@@ -13,6 +13,10 @@
         .content {
             background-color: rgba(255, 255, 255, 0.5);
         }
+
+        .book-image {
+            height: 80vh;
+        }
     </style>
 
     <title>Kondolenzbuch Pascal</title>
@@ -32,6 +36,11 @@
                         <% @first_article = Article.where('confirmed = ? AND published = ?', true, true).first %>
                         <%= link_to "Buch öffnen", @first_article.nil? ? articles_list_path : article_path(@first_article.id), class: "btn btn-info", role: "button" %>
                     </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <%= image_tag('book_closed.png', :alt => 'Buch', :class => 'book-image') %>
                 </div>
             </div>
         </div>
