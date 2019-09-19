@@ -4,6 +4,7 @@
         body {
             background-image: url(<%= asset_path 'background.jpg' %>);
             background-position: center;
+            background-size: cover;
         }
 
         .book {
@@ -13,9 +14,9 @@
         .book_content {
           position: absolute;
           top: 4%;
-          left: 17%;
-          right: 13%;
-          bottom: 7%;
+          left: 10%;
+          right: 11%;
+          bottom: 3%;
         }
 
         .scroll {
@@ -30,6 +31,10 @@
           transform: translateY(-50%);
         }
 
+        .book-image {
+          width: 1000px
+        }
+
 
     </style>
 
@@ -41,7 +46,7 @@
 
   <div class="container book text-center">
     <div class="book_spacer"></div>
-    <%= image_tag('buch.png', :alt => 'Buch') %>
+    <%= image_tag('buch.png', :alt => 'Buch', :class => 'book-image') %>
     <div class="book_content scroll">
       <%= render partial: "partials/book_text" %>
     </div>
