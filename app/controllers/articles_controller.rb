@@ -40,7 +40,7 @@ class ArticlesController < ApplicationController
       if @article.email_activate!
         post_publish(@article)
         flash[:popup] = EMAIL_WAS_CONFIRMED
-        redirect_to root
+        redirect_to root_url
       end
     else
       flash[:popup] = WRONG_TOKEN
