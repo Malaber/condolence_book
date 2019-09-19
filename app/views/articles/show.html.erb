@@ -6,145 +6,40 @@
             background-position: center;
         }
 
-        .content {
-            margin-top: 7%;
-            margin-left: 18.5%;
-            padding-right: 11%;
-            height: 800px;
-        }
-
-        .scroll {
-            overflow: scroll;
-        }
-
-        .navigation {
-            position: absolute;
-            bottom: 50px; 
-            left: 150px;
+        .book {
+          position: relative;
         }
 
         .book_content {
           position: absolute;
-          top: 0px;
-          left: 150px;
+          top: 4%;
+          left: 17%;
+          right: 13%;
+          bottom: 7%;
         }
 
-        .container {
-          position: relative;
+        .scroll {
+          overflow: scroll;
         }
+
+        .vertical-center {
+          margin: 0;
+          position: absolute;
+          top: 50%;
+          -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+        }
+
+
     </style>
 <% end %>
 
 <main>
-    <div class="container content">
-        <%= image_tag('buch.png', :alt => 'Buch', :class => 'testo') %>
-        <div class="book_content scroll">
-          <div class="row">
-              <div class="col-12">
-                  <p><%=raw @article.text %></p>
-              </div>
-              <div class="col-12">
-                  <% if @article.name? %>
-                      <h5><%= @article.name %></h5>
-                  <% end %>
-                      <span class="badge badge-pill badge-info float-right inline"><%= @article.tag %></span>
-              </div>
-          </div>
-gfd<br>
-          <br>
-          <br>
-          <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-          fgd
-          fgdfg
-
-          gf
-
-          fd<br>
-
-          g
-          fg<br>
-
-          fgd
-          gf
-          fgd<br>
-
-          <br>
-
-          g
-          gdf
-          df
-          dgf
-          dg<br>
-
-          dg
-          df
-          g<br>
-          <br>
-
-          dfg
-          dfg<br>
-          <br>
-          <br>
-          <br>
-
-          dg
-          d<br>
-          <br>
-
-          gd
-          fg
-          dfg
-          d
-          g
-          dg<br>
-
-          d
-          g
-          dg
-          d
-          fg
-          df
-          gd
-          fg
-          d
-          fg
-          dfg
-          d
-          <br>
-          df
-          <br>
-          <br>
-          g
-          dfg
-          d
-          <br>
-          gf
-          <br>
-          df
-          <br>
-          gd
-          <br>
-          fg
-          df
-          gd
-          gf
-          d
-          fg
-          <p>Article Mail:<strong><%= @article.email %></strong></p>
-          <p>Article Published:<strong><%= @article.published? %></strong></p>
-          <p>Article Confirmed:<strong><%= @article.confirmed? %></strong></p>
-        </div>
+  <div class="container book text-center">
+    <div class="book_spacer"></div>
+    <%= image_tag('buch.png', :alt => 'Buch') %>
+    <div class="book_content scroll">
+      <%=raw @article.text %>
     </div>
-
-    <div class="btn-group navigation" role="group">
-    <% @previous_published_article = @article.previous_published
-        unless @previous_published_article.nil? %>
-        <a class="btn btn-primary" href="<%= article_path(@previous_published_article.id) %>" role="button"><%= fa_icon "chevron-left" %></a>
-    <% end %>
-    <% @next_published_article = @article.next_published
-        unless @next_published_article.nil? %>
-        <a class="btn btn-primary" href="<%= article_path(@next_published_article.id) %>" role="button"><%= fa_icon "chevron-right" %></a>
-    <% end %>
-    </div>
+  </div>
 </main>
