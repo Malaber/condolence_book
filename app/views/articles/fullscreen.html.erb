@@ -1,0 +1,19 @@
+<% content_for :head do%>
+  <style>
+
+    body {
+      background-color: transparent;
+    }
+
+    .content {
+      padding: 10px;
+    }
+
+  </style>
+
+  <title>Eintrag von <%= @article.name %> - Vollbild - Kondolenzbuch Pascal</title>
+<% end %>
+
+<div class="content">
+  <%= render partial: "partials/book_text" %>
+</div>

@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>CondolenceBook</title>
+    <%= favicon_link_tag asset_path('favicon.png') %>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -15,13 +16,20 @@
     <style>
       body {
         display: flex;
-        min-height: 100vh;
         flex-direction: column;
+        margin-bottom: 65px !important;
+        margin-top: 65px !important;
       }
       
       main {
         flex: 1 0 auto;
       }
+
+      .navigation{
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
     </style>
 
     <%= yield :head %>
@@ -32,6 +40,7 @@
   </head>
 
   <body>
+    <%= render partial: "partials/article_navbar" %>
     <%= yield %>
     <%= render partial: "partials/footer" %>
   </body>

@@ -6,6 +6,7 @@ class ArticlesController < ApplicationController
   WRONG_TOKEN = 'Dieses Token ist ungültig!'
 
   def new
+    @new = true
     @article = Article.new
     render 'articles/new'
   end
@@ -23,16 +24,24 @@ class ArticlesController < ApplicationController
   end
 
   def list
+    @list = true
     render 'articles/list'
   end
 
   def show
+    @show = true
     @article = Article.find(params[:id])
     if @article&.confirmed && @article&.published
       render 'articles/show'
     else
       not_found
     end
+  end
+
+  def fullscreen
+    @article = Article.find(params[:id])
+    @fullscreen = true
+    render 'articles/fullscreen'
   end
 
   def confirm_email

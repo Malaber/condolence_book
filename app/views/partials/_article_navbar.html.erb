@@ -1,0 +1,31 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="<%= root_url %>">Kondolenzbuch</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item <%= "active" if @list %>">
+        <a class="nav-link" href="<%= articles_list_path %>">Inhaltsverzeichnis</a>
+      </li>
+      <li class="nav-item <%= "active" if @new %>">
+        <a class="nav-link" href="<%= new_article_path %>">Neuer Eintrag</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <% if @show %>
+        <div class="btn-group navigation" role="group">
+          <% @previous_published_article = @article.previous_published %>
+            <a class="btn btn-info <%= "disabled" if @previous_published_article.nil? %>" href="<%= article_path(@previous_published_article.id) unless @previous_published_article.nil? %>" role="button"><%= fa_icon "chevron-left" %></a>
+          <% @next_published_article = @article.next_published %>
+            <a class="btn btn-info <%= "disabled" if @next_published_article.nil? %>" href="<%= article_path(@next_published_article.id) unless @next_published_article.nil? %>" role="button"><%= fa_icon "chevron-right" %></a>
+        </div>
+      <% end %>
+      <% if @show || @fullscreen %>
+        <% @fullscreen_icon = @fullscreen ? "close" : "expand" %>
+        <a class="btn btn-info" href="<%= @fullscreen ? article_path(@article.id) : fullscreen_article_path(@article.id) %>" role="button"><%= fa_icon @fullscreen_icon %></a>
+      <% end %>
+    </form>
+  </div>
+</nav>

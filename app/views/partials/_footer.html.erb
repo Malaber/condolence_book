@@ -1,8 +1,8 @@
-<footer class="footer fixed-bottom" style="background-color: #424242; height: 50px; align-items: center; display: flex;">
+<footer class="footer fixed-bottom" style="background-color: #353A41; height: 50px; align-items: center; display: flex;">
   <div class="container text-center text-white">
     <div class="row">
       <div class="col-sm-12 col-md-6">
-        <a href="mailto:info@pascal-brand.de" class="text-white">Fragen zur Website</a> · Foto: Island 2018
+        <a href="mailto:info@pascal-brand.de" class="text-white">Fragen zur Website</a><%= " · Foto: Island 2018" if @privacy || @impressum %>
       </div>
       <div class="col-sm-12 col-md-6">
         <%= link_to "Impressum", impressum_path, class: "text-white" %> · <%= link_to "Datenschutzerklärung", privacy_path, class: "text-white" %>

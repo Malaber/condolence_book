@@ -2,79 +2,51 @@
     <style>
 
         body {
-            background-image: url(<%= asset_path 'background.png' %>);
-            background-attachment: fixed;
-            background-size: cover;
-            background-repeat: no-repeat;
+            background-image: url(<%= asset_path 'background.jpg' %>);
             background-position: center;
+            background-size: cover;
         }
 
-        .content {
-            margin-top: 7%;
-            margin-left: 18.5%;
-            padding-right: 11%;
-            overflow: scroll;
-            height: 800px;
+        .book {
+          position: relative;
         }
 
-        .navigation {
-            position: absolute;
-            bottom: 50px; 
-            left: 150px;
+        .book_content {
+          position: absolute;
+          top: 7%;
+          left: 10%;
+          right: 11%;
+          bottom: 2%;
         }
+
+        .scroll {
+          overflow: scroll;
+        }
+
+        .vertical-center {
+          margin: 0;
+          position: absolute;
+          top: 50%;
+          -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+        }
+
+        .book-image {
+          width: 1100px
+        }
+
+
     </style>
+
+  <title>Eintrag von <%= @article.name %> - Kondolenzbuch Pascal</title>
 <% end %>
 
 <main>
-    <div class="container content">
-        <div class="row">
-            <div class="col-12">
-                <p><%=raw @article.text %></p>
-            </div>
-            <div class="col-12">
-                <% if @article.name? %>
-                    <h5><%= @article.name %></h5>
-                <% end %>
-                    <span class="badge badge-pill badge-info float-right inline"><%= @article.tag %></span>
-            </div>
-        </div>
-
-    <p>Article Mail:<strong><%= @article.email %></strong></p>
-    <p>Article Published:<strong><%= @article.published? %></strong></p>
-    <p>Article Confirmed:<strong><%= @article.confirmed? %></strong></p>
-    <p>Turnjs library is a great option to create an ebook with embedded audio and video. We can secure the audio and video assets by using S3 link expiration feature. You can checkout the sample books and different features it offers on it's home page. This article will discuss how to integrate this library with Rails 5.
-
-Setup Dependencies
-You can read the requirements for Turnjs on the readme page. I am using jQuery version 3.3.1. Turnjs version: 4.1.0. I copied the jquery, bootstrap.js and turn.js to the vendor/assets/javascripts folder. In application.js, add the turn.js library:
-
-ein weiterer Test
-freund
-Turnjs library is a great option to create an ebook with embedded audio and video. We can secure the audio and video assets by using S3 link expiration feature. You can checkout the sample books and different features it offers on it's home page. This article will discuss how to integrate this library with Rails 5.
-
-Setup Dependencies
-You can read the requirements for Turnjs on the readme page. I am using jQuery version 3.3.1. Turnjs version: 4.1.0. I copied the jquery, bootstrap.js and turn.js to the vendor/assets/javascripts folder. In application.js, add the turn.js library:
-
-ein weiterer Test
-freund
-Turnjs library is a great option to create an ebook with embedded audio and video. We can secure the audio and video assets by using S3 link expiration feature. You can checkout the sample books and different features it offers on it's home page. This article will discuss how to integrate this library with Rails 5.
-
-Setup Dependencies
-You can read the requirements for Turnjs on the readme page. I am using jQuery version 3.3.1. Turnjs version: 4.1.0. I copied the jquery, bootstrap.js and turn.js to the vendor/assets/javascripts folder. In application.js, add the turn.js library:
-
-ein weiterer Test
-freund
-Turnjs library is a great option to create an ebook with embedded audio and video. We can secure the audio and video assets by using S3 link expiration feature. You can checkout the sample books and different features it offers on it's home page. This article will discuss how to integrate this library with Rails 5.
-
-Setup Dependencies</p>
-</div>
-    <div class="btn-group navigation" role="group">
-    <% @previous_published_article = @article.previous_published
-        unless @previous_published_article.nil? %>
-        <a class="btn btn-primary" href="<%= article_path(@previous_published_article.id) %>" role="button"><%= fa_icon "chevron-left" %></a>
-    <% end %>
-    <% @next_published_article = @article.next_published
-        unless @next_published_article.nil? %>
-        <a class="btn btn-primary" href="<%= article_path(@next_published_article.id) %>" role="button"><%= fa_icon "chevron-right" %></a>
-    <% end %>
+  <div class="container book">
+    <div class="book_spacer"></div>
+    <%= image_tag('buch.png', :alt => 'Buch', :class => 'book-image') %>
+    <div class="book_content scroll">
+      <%= render partial: "partials/book_text" %>
     </div>
+  </div>
 </main>
