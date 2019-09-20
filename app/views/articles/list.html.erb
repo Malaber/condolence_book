@@ -1,5 +1,13 @@
 <% content_for :head do%>
   <title>Inhaltsverzeichnis - Kondolenzbuch Pascal</title>
+
+  <style>
+    body {
+      background-image: none;
+      background-position: center;
+      background-size: cover;
+    }
+  </style>
 <% end %>
 
 <% @article_list = Article.all_published %>
