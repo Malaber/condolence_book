@@ -3,8 +3,10 @@
 
         body {
             background-image: url(<%= asset_path 'background.jpg' %>);
+            background-attachment: fixed;
             background-position: center;
             background-size: cover;
+            background-repeat: no-repeat;
         }
 
         .book {
@@ -15,8 +17,9 @@
           position: absolute;
           top: 7%;
           left: 10%;
-          right: 11%;
-          bottom: 2%;
+          bottom: 4%;
+          max-height: 100%;
+          max-width: 70vw;
         }
 
         .scroll {
@@ -32,7 +35,12 @@
         }
 
         .book-image {
-          width: 1100px
+          max-width: 100%;
+          display: block;
+        }
+
+        .book-wrapper {
+          width: 80vw;
         }
 
 
@@ -43,10 +51,13 @@
 
 <main>
   <div class="container book">
-    <div class="book_spacer"></div>
-    <%= image_tag('buch.png', :alt => 'Buch', :class => 'book-image') %>
-    <div class="book_content scroll">
-      <%= render partial: "partials/book_text" %>
+    <div class="row">
+      <div class="col-12">
+        <div class="book-wrapper">
+          <%= image_tag('buch.png', :alt => 'Buch', :class => 'book-image') %>
+          <span class="book_content scroll"><%= render partial: "partials/book_text" %></span>
+        </div>
+      </div>
     </div>
   </div>
 </main>
